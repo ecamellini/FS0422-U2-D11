@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Callbacks</title>
+</head>
+
+<body>
+
+  <script>
+
+    function answer(time) {
+      console.log(`🤳 Hello! Who's there? - Answered in ${time} ms`)
+    }
+
+    function angryAnswer(time) {
+      console.log(`What!!! 🤬 - Answered in ${time} ms`)
+    }
+
+    function suspiciousAnswer(time) {
+      console.log(`...Who's calling? 🤔  - Answered in ${time} ms`)
+    }
+
+
+    function callFriend(callback) {
+      // Dial the number, wait for the friend to answer the phone
+      // These operations take some time...
+      const randomTime = Math.round(Math.random() * 5000)
+
+      setTimeout(function () {
+        callback(randomTime)
+      }, randomTime)
+
+      // Another way to do it:
+      // setTimeout(() => callback(randomTime), randomTime)
+
+      // setTimeout(callback(), randomTime)
+      // ^^ If we just call the function, we are not passing to setTimeout
+      // the function to be called, but its return value of the function.
+      // It's not what we want to do here. It would be like doing:
+      // const callbackResult = callback()
+      // setTimeout(callbackResult, 3000)
+    }
+
+
+    callFriend(answer)
+    callFriend(angryAnswer)
+    callFriend(suspiciousAnswer)
+    console.log("The phone is ringing....")
+
+  </script>
+</body>
+
+</html>
