@@ -27,7 +27,6 @@
     fetch('https://striveschool-api.herokuapp.com/books') // fetch is a Promise
       .then((response) => response.json()) // .json() is another Promise!
       .then((listOfBooks) => {
-        console.log(container)
         container.innerHTML = ''
 
         for (book of listOfBooks) {
